@@ -2,7 +2,7 @@ const form = document.getElementById("registrar");
 const input = form.querySelector("input");
 const ul = document.getElementById("invitedList");
 
-function createLI (text) {
+function createLI(text) {
   const li = document.createElement("li");
   li.textContent = text;
   const label = document.createElement("label");
@@ -13,8 +13,8 @@ function createLI (text) {
   li.appendChild(label);
 
   //edit names
-  const editButton = document.createElement('button');
-  editButton.textContent = 'edit';
+  const editButton = document.createElement("button");
+  editButton.textContent = "edit";
   li.appendChild(editButton);
 
   //removing names
@@ -45,16 +45,15 @@ ul.addEventListener("change", e => {
   }
 });
 
-ul.addEventListener("click", e => {
-  if (e.target.tagName === "BUTTON") {
+ul.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON') {
     const button = e.target;
     const li = button.parentNode;
-    const ul = button.parentNode;
-    if(button.textContent ==='remove'){
+    const ul = li.parentNode;
+    if (button.textContent === 'remove') {
       ul.removeChild(li);
-    } else if (button.textContent === 'edit'){
-console.log('edit')
+    } else if (button.textContent === 'edit') {
+      console.log("edit");
     }
-    
   }
 });
