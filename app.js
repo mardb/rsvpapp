@@ -14,18 +14,31 @@ form.addEventListener("submit", e => {
   checkbox.type = "checkbox";
   label.appendChild(checkbox);
   li.appendChild(label);
+
+  //removing names
+  const button = document.createElement("button");
+  button.textContent = "remove";
+  li.appendChild(button);
   ul.appendChild(li);
 });
 
 //checks checkbox status
-ul.addEventListener('change', (e) => {
+ul.addEventListener("change", e => {
   const checkbox = event.target;
   const checked = checkbox.checked;
   const listItem = checkbox.parentNode.parentNode;
 
   if (checked) {
-    listItem.className = 'responded';
+    listItem.className = "responded";
   } else {
-    listItem.className = '';
+    listItem.className = "";
+  }
+});
+
+ul.addEventListener("click", e => {
+  if (e.target.tagName === "BUTTON") {
+    const li = e.target.parentNode;
+    const ul = li.parentNode;
+    ul.removeChild(li)
   }
 });
