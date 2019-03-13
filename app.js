@@ -85,21 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const button = e.target;
       const li = button.parentNode;
       const ul = li.parentNode;
-      function removeName(){
-        ul.removeChild(li);
-
-      }
-      function editName(){
-        const span = li.firstElementChild;
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = span.textContent;
-        li.insertBefore(input, span);
-        li.removeChild(span);
-        button.textContent = "save";
-
-      }
-      function saveName(){
+      const action = button.textContent;
+      const nameActions = {
+        remove: () => {
+          ul.removeChild(li);
+        },
+        edit: () => {
+            const span = li.firstElementChild;
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = span.textContent;
+            li.insertBefore(input, span);
+            li.removeChild(span);
+            button.textContent = "save";
+      },
+      save: () => {
         const input = li.firstElementChild;
         const span = document.createElement("span");
         span.textContent = input.value;
@@ -108,13 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
         button.textContent = "edit";
 
       }
-      if (button.textContent === "remove") {
-        removeName()
-      } else if (button.textContent === "edit") {
-          editName();
-      } else if (button.textContent === "save") {
-        saveName();
-      }
+    };
+      //select and run action in button's name
+      nameActions[action]();
     }
   });
 });
